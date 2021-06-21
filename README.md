@@ -160,6 +160,110 @@ The following was done to preprocess the data:
 
 ![image](https://user-images.githubusercontent.com/57301554/122838265-4f889300-d2bb-11eb-8837-91eec0132ff3.png)
 
+# Deliverable 2:  
+## Reducing Data Dimensions Using PCA 
+### Deliverable Requirements:
+
+Using your knowledge of how to apply the Principal Component Analysis (PCA) algorithm, you’ll reduce the dimensions of the `X` DataFrame to three principal components and place these dimensions in a new DataFrame.
+
+**Follow the instructions below:**
+
+Follow the instructions below and use the information in the `crypto_clustering_starter_code.ipynb` file to complete Deliverable 2.
+
+1. Continue using the `crypto_clustering.ipynb` file from Deliverable 1 where you’ve already performed the preprocessing steps.
+2. Using the information we’ve provided, apply PCA to reduce the dimensions to three principal components.
+
+If you’d like a hint on how to use the PCA algorithm, that’s totally okay. If not, that’s great too. You can always revisit this later if you change your mind.
+
+3. Create a new DataFrame named `pcs_df` that includes the following columns, `PC 1`, `PC 2`, and `PC 3`, and uses the index of the `crypto_df` DataFrame as the index.
+
+### DELIVERABLE RESULTS:
+### Reducing Data Dimensions Using PCA
+The next steps involve, applying PCA to reduce the dimensions to 3 principal components.
+
+The analysis from DataFrame, `pcs_df` includes columns `PC 1`, `PC 2`, and `PC 3`, and uses the index of the `crypto_df` DataFrame as the index.  
+
+Your DataFrame should look like the image below:
+
+![image](https://user-images.githubusercontent.com/57301554/122838622-0dac1c80-d2bc-11eb-8fe6-9d36d0b708f4.png)
+
+# Deliverable 3:  
+## Clustering Cryptocurrencies Using K-means 
+### Deliverable Requirements:
+
+Using your knowledge of the K-means algorithm, you’ll create an elbow curve using `hvPlot` to find the best value for K from the `pcs_df` DataFrame created in Deliverable 2. Then, you’ll run the K-means algorithm to predict the K clusters for the cryptocurrencies’ data.
+
+Follow the instructions below and use the information in the crypto_clustering_starter_code.ipynb file to complete Deliverable 3.
+
+1. Continue using the `crypto_clustering.ipynb` file that you used in Deliverable 2 to reduce the dataset to three dimensions.
+2. Using the `pcs_df` DataFrame, create an elbow curve using `hvPlot` to find the best value for **K**.
+3. Next, use the `pcs_df` DataFrame to run the K-means algorithm to make predictions of the K clusters for the cryptocurrencies’ data.
+If you’d like a hint on how to use the K-means algorithm, that’s totally okay. If not, that’s great too. You can always revisit this later if you change your mind.
+4. Create a new DataFrame named `clustered_df` by concatenating the `crypto_df` and `pcs_df` DataFrames on the same columns. The index should be the same as the `crypto_df` DataFrame.
+5.  Add the CoinName column that holds the names of the cryptocurrencies, which you created in Step 7 of Deliverable 1, to the `clustered_df`.
+6. Add another new column to the `clustered_df` named `Class` that holds the predictions, i.e.,` model.labels_`, from Step 3.
+
+Your `clustered_df` DataFrame should look like the image below:
+
+![image](https://user-images.githubusercontent.com/57301554/122838776-611e6a80-d2bc-11eb-8951-10fdaca75b90.png)
+
+### DELIVERABLE RESULTS:
+### Clustering Cryptocurrencies Using K-means
+Run analysis of clusters for the dataset `pcs_df`, including plotting an elbow curve with `hvplot` to find the value for `K`.  
+
+![image](https://user-images.githubusercontent.com/57301554/122838916-a3e04280-d2bc-11eb-9e29-772dc6f1bb9d.png)
+
+![image](https://user-images.githubusercontent.com/57301554/122838961-b8bcd600-d2bc-11eb-88b6-007287908873.png)
+
+By running an analysis using K=4 and applying the K-means algorithm, got the below results:
+
+![image](https://user-images.githubusercontent.com/57301554/122839071-f3267300-d2bc-11eb-9ae8-fe0622843438.png)
+
+Build a new dataframe names: `clustered_df` 
+
+* Adding the `CoinNames` column from the `cc_names_df` dataset created.  
+* Merging the `crypto_df` and `pcs_df` DataFrames with the same index. 
+
+![image](https://user-images.githubusercontent.com/57301554/122839198-2cf77980-d2bd-11eb-86fc-2cf0d66dd2fe.png)
+
+# Deliverable 4:  
+## Visualizing Cryptocurrencies Results 
+### Deliverable Requirements:
+
+Using your knowledge of creating scatter plots with Plotly Express and `hvplot`, you’ll visualize the distinct groups that correspond to the three principal components you created in Deliverable 2, then you’ll create a table with all the currently tradable cryptocurrencies using the `hvplot.table()` function.
+ 
+### Instructions
+
+
+1. Continue using the crypto_clustering.ipynb file from Deliverable 3 where you have predicted the K clusters for the cryptocurrencies’ data.
+2. Create a 3D scatter plot using the Plotly Express scatter_3d() function to plot the three clusters from the clustered_df DataFrame.
+3. Add the CoinName and Algorithm columns to the hover_name and hover_data parameters, respectively, so each data point shows the CoinName and Algorithm on hover.
+
+If you’d like a hint on how to add additional parameters to a Plotly Express 3D scatter plot, that’s totally okay. If not, that’s great too. You can always revisit this later if you change your mind.
+
+4. Create a table with tradable cryptocurrencies using the hvplot.table() function.
+
+If you’d like a hint on how to use the hvplot.table() function, that’s totally okay. If not, that’s great too. You can always revisit this later if you change your mind.
+
+Your table should look like the table in the image below:
+
+![image](https://user-images.githubusercontent.com/57301554/122839377-8bbcf300-d2bd-11eb-8dc2-aa93676d4b08.png)
+
+5. Print the total number of tradable cryptocurrencies in the clustered_df DataFrame.
+6. Use the MinMaxScaler().fit_transform method to scale the TotalCoinSupply and TotalCoinsMined columns between the given range of zero and one.
+
+If you’d like a hint on how to use the MinMaxScaler().fit_transform method to scale the "TotalCoinSupply" and "TotalCoinsMined" columns, that’s totally okay. If not, that’s great too. You can always revisit this later if you change your mind.
+
+7. Create a new DataFrame using the clustered_df DataFrame index that contains the scaled data you created in Step 5.
+8. Add the CoinName column from the clustered_df DataFrame to the new DataFrame.
+9. Add the Class column from the clustered_df DataFrame to the new DataFrame.
+
+![image](https://user-images.githubusercontent.com/57301554/122839477-b73fdd80-d2bd-11eb-9ba3-6d015f3148ed.png)
+
+
+
+
+
 
 
 
